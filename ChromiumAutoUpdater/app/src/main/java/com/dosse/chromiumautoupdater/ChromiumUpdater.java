@@ -117,7 +117,7 @@ public class ChromiumUpdater extends Service {
         }
 
         /**
-         * Downloads and installs the latest version of chromium from https://commondatastorage.googleapis.com/chromium-browser-snapshots/Android
+         * Downloads and installs the latest version of chromium from https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Android/
          * @return timestamp (success) or 0 (error)
          */
         private long downloadUpdate(){
@@ -179,7 +179,7 @@ public class ChromiumUpdater extends Service {
                         latestVer = br.readLine().split(",")[7];
                         br.close();
                     }else{
-                        u = new URL("https://commondatastorage.googleapis.com/chromium-browser-snapshots/Android/LAST_CHANGE");
+                        u = new URL("https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Android%2FLAST_CHANGE?alt=media");
                         c = u.openConnection();
                         c.connect();
                         BufferedReader br = new BufferedReader(new InputStreamReader(u.openStream()));
@@ -222,7 +222,7 @@ public class ChromiumUpdater extends Service {
                     String originalBuildNumber=latestVer;
                     while(changes<100) {
                         try {
-                            u = new URL("https://commondatastorage.googleapis.com/chromium-browser-snapshots/Android/" + latestVer + "/chrome-android.zip");
+                            u = new URL("https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Android%2F" + latestVer + "%2Fchrome-android.zip?alt=media");
                             c = u.openConnection();
                             c.connect();
                             in = new BufferedInputStream(u.openStream());
